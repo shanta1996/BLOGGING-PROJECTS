@@ -1,0 +1,75 @@
+{% extends 'layouts.html' %}
+{% block title %}
+<title>Update Blogs</title>
+{% endblock %}
+{% load static %}
+{% block starts%}
+
+<div class="mt-[20px] flex justify-end mb-[20px] md:mb-auto px-3 md:px-12">
+
+  <a href="/"
+  class="bg-teal-500 text-white py-2 md:py-3 px-1 md:px-5 text-[16px] md:text-[18px] xl:text-[20px] 2xl:text-[25px] 3xl:text-[30px] 4xl:text-[35px] my-auto rounded-md hover:border-2 ease-linear duration-75 hover:border-teal-500 hover:border-solid hover:bg-white hover:text-teal-500 hover:text-[20px]"
+  >Back to Home</a
+>
+</div>
+<section class="flex justify-center snap-none">
+  <div class="mt-100px">
+    {% for msg in messages %}
+    {% if msg.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+    <div
+      class="bg-teal-100 h-[50px] text-[20px] md:text-[20px] 2xl:text-[25px] flex justify-center items-center rounded py-[10px] relative z-10"
+    >
+      {{msg}}
+    </div>
+    {% endif %}
+    {% if msg.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+    <div
+      class="bg-red-200 h-[50px] text-[20px] md:text-[20px] 2xl:text-[25px] flex justify-center items-center rounded py-[10px] relative z-10"
+    >
+      {{msg}}
+    </div>
+    {% endif %} 
+    {% endfor %}
+  </div>
+
+  <div class="shadow-2xl w-[600px] px-[20px]">
+    <form action="" method="post" class="" enctype="multipart/form-data snap-none">
+
+    {% for msg in messages %}
+    {% if msg.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+    <div
+      class="bg-teal-100 h-[50px] text-[20px] md:text-[20px] 2xl:text-[25px] flex justify-center items-center rounded py-[10px] relative z-10"
+    >
+      {{msg}}
+    </div>
+    {% endif %}
+    {% if msg.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+    <div
+      class="bg-red-200 h-[50px] text-[20px] md:text-[20px] 2xl:text-[25px] flex justify-center items-center rounded py-[10px] relative z-10"
+    >
+      {{msg}}
+    </div>
+    {% endif %} 
+    {% endfor %}
+
+
+  
+      <h2 class="text-teal-500 font-bold text-[25px] md:text-[30px] xl:text-[40px] 2xl:text-[45px] text-center">Update Blog Form</h2>
+        {% csrf_token %}
+        
+
+
+        {{form.as_p}}
+ 
+
+ 
+        {{form.media}}
+
+      <div class="flex justify-center">
+      <input type="submit" value="Update Blog" class="border-2 border-solid border-teal-500 rounded-lg p-[10px] mb-[35px] mt-[20px] font-semibold text-[18px] xl:text-[20px] 2xl:text-[25px]">
+    </div>
+    </form>
+  </div>
+</section>
+
+{% endblock %}

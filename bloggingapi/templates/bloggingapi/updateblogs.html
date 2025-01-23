@@ -1,0 +1,52 @@
+<!-- {% extends 'layouts.html' %}
+{% block title %}
+<title>Add Blogs</title>
+{% endblock %}
+{% load static %}
+{% block starts%}
+
+
+<section class="flex justify-center snap-none">
+
+    
+
+  <div class="shadow-2xl w-[600px] px-[20px]">
+    <form action="" method="post" class="" enctype="multipart/form-data snap-none">
+
+        {% for msg in messages %}
+    {% if msg.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+    <div
+      class="bg-teal-100 h-[50px] text-[20px] md:text-[20px] 2xl:text-[25px] flex justify-center items-center rounded py-[10px] relative z-10"
+    >
+      {{msg}}
+    </div>
+    {% endif %}
+    {% if msg.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+    <div
+      class="bg-red-200 h-[50px] text-[20px] md:text-[20px] 2xl:text-[25px] flex justify-center items-center rounded py-[10px] relative z-10"
+    >
+      {{msg}}
+    </div>
+    {% endif %} 
+    {% endfor %}
+
+
+      <h2 class="text-teal-500 font-bold text-[25px] md:text-[30px] xl:text-[40px] 2xl:text-[45px] text-center">Update Blog Form</h2>
+        {% csrf_token %}
+        
+
+
+        {{form.as_p}}
+ 
+
+  
+        {{form.media}}
+
+      <div class="flex justify-center">
+      <input type="submit" value="Update Blog" class="border-[3px] border-solid border-teal-500 rounded-lg p-[10px] mb-[35px] mt-[20px] font-semibold text-[18px] xl:text-[20px] 2xl:text-[25px]">
+    </div>
+    </form>
+  </div>
+</section>
+
+{% endblock %} -->

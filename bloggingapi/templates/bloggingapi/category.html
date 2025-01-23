@@ -1,0 +1,54 @@
+<!-- {% extends 'layouts.html'%} {% block title%}
+<title>All Category</title>
+{% endblock%}  {% block starts%}
+{% include 'bloggingapi/navbar.html'%}
+
+<div class="mt-[50px]">
+  {% for msg in messages %}
+  {% if msg.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+  <div
+    class="bg-teal-100 h-[50px] text-[20px] md:text-[20px] 2xl:text-[25px] flex justify-center items-center rounded py-[10px] relative z-10"
+  >
+    {{msg}}
+  </div>
+  {% endif %}
+  {% if msg.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+  <div
+    class="bg-red-200 h-[50px] text-[20px] md:text-[20px] 2xl:text-[25px] flex justify-center items-center rounded py-[10px] relative z-10"
+  >
+    {{msg}}
+  </div>
+  {% endif %} 
+  {% endfor %}
+</div>
+
+
+<table class="table-auto mt-[100px] mx-auto shadow-lg border-2 h-[400px] w-[500px]">
+  <thead>
+    <tr > 
+      <th class="text-[25px] border-b-[2px]">Category name</th>
+      <th class="text-[25px] border-b-[2px]">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for category in category %}
+    <tr>
+      <td class="text-[20px] pl-[20px]">{{category.category_title}}</td>
+      <td>
+        <a href="/updatecategory/{{category.id}}" class="border-2 p-[10px] text-[20px]">Edit</a>
+        <a href="/deletecategory/{{category.id}}" class="border-2 p-[10px] text-[20px]" onclick="return confirm('Are you sure to delete this Category?')">delete</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<div class="my-[150px] flex justify-center ">
+
+  <a href="/"
+  class="bg-teal-500 text-white py-3 px-5  text-[18px] xl:text-[20px] 2xl:text-[25px] 3xl:text-[30px] 4xl:text-[35px] my-auto rounded-lg hover:border-[3px] ease-linear duration-75 hover:border-teal-500 hover:border-solid hover:bg-white hover:text-teal-500 hover:text-[20px]"
+  >Back to Home</a
+>
+</div>
+
+{% endblock%} -->

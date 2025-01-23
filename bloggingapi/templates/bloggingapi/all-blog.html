@@ -1,0 +1,93 @@
+{% extends 'layouts.html'%} {% load static%} {% block title%}
+<title>All Blogs</title>
+{% endblock%}  {% block starts%}
+{% include 'bloggingapi/navbar.html'%}
+
+
+  {% for msg in messages %}
+  {% if msg.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+  <div
+    class="bg-teal-100 h-[50px] text-[20px] md:text-[20px] 2xl:text-[25px] flex justify-center items-center rounded py-[10px] relative z-10"
+  >
+    {{msg}}
+  </div>
+  {% endif %}
+  {% if msg.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+  <div
+    class="bg-red-200 h-[50px] text-[20px] md:text-[20px] 2xl:text-[25px] flex justify-center items-center rounded py-[10px] relative z-10"
+  >
+    {{msg}}
+  </div>
+  {% endif %} 
+  {% endfor %}
+
+<div
+  class="w-[100%] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 relative top-[200px]"
+>
+  {% for allblog in allblogs %} 
+
+  
+  <div class="flex justify-center">
+    <div
+      class="shadow-2xl mb-[100px] w-[500px] md:w-[350px] lg:w-[300px] xl:w-[400px] 2xl:w-[350px] 3xl:w-[400px] 4xl:w-[450px] 5xl:w-[500px] min-h-[700px] rounded-2xl"
+    >
+      <a href="/singleblog/{{allblog.id}}" class="">
+        <img
+          src="/{{allblog.image}}"
+          alt="{{allblog.title}}"
+          class="h-[300px] md:h-[250px] xl:h-[300px] 2xl:h-[350px] w-[100%] rounded-tr-2xl rounded-tl-2xl"
+        />
+      </a>
+
+      <div class="px-[20px] py-[30px]">
+        <a
+          href="/singleblog/{{allblog.id}}"
+          class="tracking-[2px] text-[16px] xl:text-[18px] 2xl:text-[20px] 3xl:text-[22px] 4xl:text-[25px] 5xl:text-[27px]"
+          >{{allblog.category.category_title}}</a
+        >
+        <h5>
+          <a
+            href="/singleblog/{{allblog.id}}"
+            class="font-bold text-[20px] xl:text-[25px] 2xl:text-[30px] 3xl:text-[35px] 4xl:text-[40px] 5xl:text-[45px] text-teal-500"
+            >{{allblog.title}}</a
+          >
+        </h5>
+        <p class="mt-[10px] text-[16px] 2xl:text-[18px] 3xl:text-[20px] 4xl:text-[22px] 5xl:text-[25px]">{{allblog.created_at}}</p>
+        <p
+          class="font-normal text-[18px] xl:text-[20px] 2xl:text-[22px] 3xl:text-[25px] 4xl:text-[27px] 5xl:text-[30px] leading-[20px] xl:leading-[30px] 2xl:leading-[40px] mt-[20px]"
+        >
+          {{allblog.content | striptags | truncatechars:100}}
+        </p>
+        <a
+          href="/singleblog/{{allblog.id}}"
+          class="mt-[50px] text-teal-500 font-semibold text-[18px] xl:text-[20px] 2xl:text-[22px] 3xl:text-[25px] 4xl:text-[27px] 5xl:text-[30px]"
+          >Read more</a
+        >
+        <div class="my-[40px] flex">
+          <a
+            href="/"
+            class="border-2 border-solid border-teal-500 p-[5px] md:p-[10px]  rounded-[5px] text-slate-600 text-[16px] xl:text-[18px] 2xl:text-[20px] 3xl:text-[22px] 4xl:text-[25px] 5xl:text-[27px] ease-linear duration-75 hover:bg-teal-500 hover:text-white"
+            >Edit Blog</a
+          >
+
+          <a
+            href="/"
+            class="border-2 border-solid border-teal-500 p-[5px] md:p-[10px]  rounded-[5px] text-slate-600 text-[16px] xl:text-[18px] 2xl:text-[20px] 3xl:text-[22px] 4xl:text-[25px] 5xl:text-[27px] mx-[20px] ease-linear duration-75 hover:bg-teal-500 hover:text-white"
+        
+            >Delete Blog</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+<div class="my-[150px] flex justify-center ">
+
+  <a href="/"
+  class="bg-teal-500 text-white py-3 px-5  text-[18px] xl:text-[20px] 2xl:text-[25px] 3xl:text-[30px] 4xl:text-[35px] my-auto rounded-lg ease-linear duration-75 hover:border-2  hover:border-teal-500 hover:border-solid hover:bg-white hover:text-teal-500 hover:text-[20px]"
+  >Back to Home</a
+>
+</div>
+
+{% endblock%}

@@ -1,0 +1,107 @@
+{% extends 'layouts.html'%}  {% block title%}
+<title>Single Blog</title>
+{% endblock%}  {% block starts%}
+{% include 'bloggingapi/navbar.html'%}
+
+
+{% for single in single_blog %} 
+<h5 class="font-semibold text-[25px] xl:text-[30px] 2xl:text-[32px] 3xl:text-[35px] 4xl:text-[37px] 5xl:text-[40px] text-teal-500 mt-[150px] mb-[100px] h-[80px] xl:h-[100px] 2xl:h-[120px] 3xl:h-[150px] border-y-4 flex justify-center items-center">
+  
+    {{single.title}}
+</h5>
+<div
+  class=""
+>
+    <!-- <img
+      src="/{{single.image}}"
+      alt="{{single.title}}"
+      class="h-[300px] md:h-[250px] xl:h-[300px] 2xl:h-[350px] w-[100%] rounded-tr-2xl rounded-tl-2xl"
+    /> -->
+    
+    <img
+      src="/{{single.image}}"
+      alt="{{single.title}}"
+      class="h-[600px] sm:h-[700px] md:h-[750px]  xl:h-[800px] 2xl:h-[850px] 3xl:h-[900px] 4xl:h-[950px] 5xl:h-[1000px] rounded-2xl mx-auto rounded-t-[50%]"
+    />
+
+  
+
+    <div
+      class=" shadow-2xl mb-[100px] w-[100%] py-[100px] px-[50px] min-h-[500px] rounded-2xl bg-white"
+    >
+    <!-- <div
+      class="bg-red-200 shadow-2xl mb-[100px] w-[500px] md:w-[350px] lg:w-[300px] xl:w-[400px] 2xl:w-[350px] 3xl:w-[400px] 4xl:w-[450px] 5xl:w-[500px] min-h-[700px] rounded-2xl"
+    > -->
+
+      
+
+      <div class="px-[20px] py-[30px]">
+        <a
+          href=""
+          class="tracking-[2px] text-[16px] xl:text-[18px] 2xl:text-[20px] 3xl:text-[22px] 4xl:text-[25px] 5xl:text-[27px]"
+          >{{single.category.category_title}}</a
+        >
+        
+        <p class="mt-[10px] text-[16px] 2xl:text-[18px] 3xl:text-[20px] 4xl:text-[22px] 5xl:text-[25px]">{{single.created_at}}</p>
+        <p
+          class="font-normal text-[18px] xl:text-[20px] 2xl:text-[22px] 3xl:text-[25px] 4xl:text-[27px] 5xl:text-[30px] leading-[30px] 2xl:leading-[40px] mt-[20px]"
+        >
+          {{single.content | striptags}}
+        </p>
+        <div class="my-[40px] flex">
+          {% if user.is_authenticated %}
+          <a
+            href="/"
+            class="border-2 border-solid border-teal-500 p-[5px] md:p-[10px]  rounded-[5px] text-slate-600 text-[16px] xl:text-[18px] 2xl:text-[20px] 3xl:text-[22px] 4xl:text-[25px] 5xl:text-[27px] ease-linear duration-75 hover:bg-teal-500 hover:text-white"
+            >Edit Blog</a
+          >
+
+          <a
+            href="/"
+            class="border-2 border-solid border-teal-500 p-[5px] md:p-[10px]  rounded-[5px] text-slate-600 text-[16px] xl:text-[18px] 2xl:text-[20px] 3xl:text-[22px] 4xl:text-[25px] 5xl:text-[27px] mx-[20px] ease-linear duration-75 hover:bg-teal-500 hover:text-white"
+           
+            >Delete Blog</a
+          >
+          {% else %}
+          <a
+          href="/"
+          class="border-2 border-solid border-teal-500 p-[5px] md:p-[10px]  rounded-[5px] text-slate-600 text-[16px] xl:text-[18px] 2xl:text-[20px] 3xl:text-[22px] 4xl:text-[25px] 5xl:text-[27px] ease-linear duration-75 hover:bg-teal-500 hover:text-white"
+          >Edit Blog</a
+        >
+
+        <a
+          href="/"
+          class="border-2 border-solid border-teal-500 p-[5px] md:p-[10px]  rounded-[5px] text-slate-600 text-[16px] xl:text-[18px] 2xl:text-[20px] 3xl:text-[22px] 4xl:text-[25px] 5xl:text-[27px] mx-[20px] ease-linear duration-75 hover:bg-teal-500 hover:text-white"
+     
+          >Delete Blog</a
+        >
+        {% endif %}
+        </div>
+      </div>
+    </div>
+
+  {% endfor %}
+</div>
+<div class=" mx-auto w-[45%] flex justify-center">
+  <form action="" method="post" class="flex flex-col w-[100%]">
+   
+    <input type="text" name="fullname" id="fullname" placeholder="Fullname" class="text-[20px] w-[100%] border-2 border-gray-300 rounded-lg outline-none p-[10px] mt-[25px]" required>
+    <input type="email" name="email" id="email" placeholder="Email" class="text-[20px] w-[100%] border-2 border-gray-300 rounded-lg outline-none p-[10px] mt-[25px] " required>
+    <input type="hidden" name="post" id="post" value="">
+     <textarea name="message" id="message" placeholder="Your Comment" class="text-[20px] w-[100%] border-2 border-gray-300 rounded-lg outline-none p-[10px] mt-[25px] h-[200px]" required></textarea>
+     <div class="mt-[30px] ">
+     <a href="" class="text-[18px] text-gray-600 border-2 p-[10px] border-teal-500 rounded-md ease-linear duration-75 hover:bg-teal-500 hover:text-white">Leave Comment</a>
+    </div>
+    <div class="mt-[20px]">Comment</div>
+   
+  </form>
+</div>
+<div class="my-[150px] flex justify-center ">
+
+  <a href="/"
+  class="bg-teal-500 text-white py-3 px-5  text-[18px] xl:text-[20px] 2xl:text-[25px] 3xl:text-[30px] 4xl:text-[35px] my-auto rounded-lg hover:border-2 ease-linear duration-75 hover:border-teal-500 hover:border-solid hover:bg-white hover:text-teal-500 hover:text-[20px]"
+  >Back to Home</a
+>
+</div>
+
+{% endblock%}

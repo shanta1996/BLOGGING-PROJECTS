@@ -1,0 +1,14 @@
+{% extends 'layouts.html' %}
+{% block starts %}
+{% for img in show %}
+<img src="" alt="">
+{% endfor %}
+
+<div class="">
+    <span>UserName:</span>
+  <span>{{user.username}}</span>
+  <br>
+  <span>Email:</span>
+  <span>{{user.email}}</span>
+</div>
+{% endblock %} 

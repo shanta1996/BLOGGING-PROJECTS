@@ -1,0 +1,15 @@
+{% extends 'layouts.html' %}
+{% block title %}
+<title>Add Blogs</title>
+{% endblock %}
+{% block starts%}
+<div>
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input class="border-2 border-teal-500" type="text" name="title" id="title" placeholder="title">
+        <input class="border-2 border-teal-500" type="text" name="content" id="content" placeholder="content">
+        <!-- <input class="border-2 border-teal-500" type="file" name="file" id="file" placeholder="file"> -->
+        <button class="border-2 border-teal-500">save</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <title>Document</title> -->
+     {% block title %}
+     {{section.title}}
+     {% endblock %}
+
+     {% load static %}
+  
+     <!-- <link rel="stylesheet" href="{% static 'js/script.js' %}"> -->
+     <!-- <link rel="stylesheet" href="{% static 'script.js' %}"> -->
+      
+     <!-- <script src="{% static 'js/script.js' %}"></script>  -->
+
+     <!-- cdnjs link  -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- tailwind css link  -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              screens: {
+                'xxs':'350px',
+                'xs':'450px',
+                'mid':'500px',
+                '3xl':'1700px' ,
+                '4xl':'1900px' ,
+                '5xl':'2200px' ,
+              }
+            }
+          }
+        }
+      </script>
+         <script src="{% static 'js/script.js' %}"></script>
+</head>
+<body>
+    {% block starts%}
+    {% endblock %}
+</body>
+</html>

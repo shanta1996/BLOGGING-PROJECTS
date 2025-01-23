@@ -1,0 +1,185 @@
+{% extends 'layouts.html' %} 
+{% load static %}
+{% block starts %}
+
+
+<nav class="bg-slate-100 h-20 2xl:h-24 fixed top-0 right-0 left-0 z-10">
+  <ul class="flex justify-between mx-8">
+    <li class="my-6 md:my-2">
+      <a id="logo" onclick="blogLogo()"
+        class="text-[25px] md:text-[30px] lg:text-[40px] 2xl:text-[45px] 3xl:text-[50px] 4xl:text-[55px] font-semibold font-sans text-teal-500"
+        href="/"
+      >
+        Blog
+      </a>
+    </li>
+    <div class="flex gap-[30px] items-center">
+      {% if user.is_authenticated %}
+      <li class="my-6 md:my-3 hidden md:block">
+        <a
+          href="/allblogs"
+          class="bg-teal-500 flex justify-center text-white py-3 px-5 text-[18px] xl:text-[20px] 2xl:text-[25px] 3xl:text-[30px] 4xl:text-[35px] my-auto rounded-lg hover:border-2 ease-linear duration-75 hover:border-teal-500 hover:border-solid hover:bg-white hover:text-teal-500 hover:text-[20px]"
+          >All Blogs</a
+        >
+      </li>
+
+      <li class="my-6 md:my-3 hidden md:block">
+        <a
+          href="/"
+          class="bg-teal-500 text-white py-3 px-5 text-[18px] xl:text-[20px] 2xl:text-[25px] 3xl:text-[30px] 4xl:text-[35px] my-auto rounded-lg hover:border-2 ease-linear duration-75 hover:border-teal-500 hover:border-solid hover:bg-white hover:text-teal-500 hover:text-[20px]"
+          >Add Blogs</a
+        >
+      </li>
+
+      <li class="my-6 md:my-3 hidden md:block" onclick="return confirm('Are you sure you want to logout?')">
+        <a
+          href="/logout"
+          class="w-[120px] md:w-auto bg-red-300 text-white py-3 px-5 text-[18px] xl:text-[20px] 2xl:text-[25px] 3xl:text-[30px] 4xl:text-[35px] my-auto rounded-lg hover:border-2 ease-linear duration-75 hover:border-teal-500 hover:border-solid hover:bg-white hover:text-teal-500 hover:text-[20px]"
+          >Logout</a
+        >
+      </li>
+      <form method="get">
+        <input class="p-2 rounded-md outline-none" type="text" name="search" id="search" placeholder="search">
+      </form>
+      <!-- <a href="" class="hidden md:block">
+        <img src="{% static 'images/p-icon.webp' %}" class="h-[40px]" alt="" />
+      </a> -->
+      <li class="my-6 md:my-3 hidden md:block">
+        <a
+          href=""
+          class="text-[18px] xl:text-[20px] 2xl:text-[25px] 3xl:text-[30px] 4xl:text-[35px] my-auto"
+          >{{user.username}}</a
+        >
+      </li>
+
+      {% else %}
+      <li class="my-6 md:my-3 hidden md:block">
+        <a
+          href="/login"
+          class="bg-teal-500 text-white py-3 px-5 text-[18px] xl:text-[20px] 2xl:text-[25px] 3xl:text-[30px] 4xl:text-[35px] my-auto rounded-lg hover:border-2 ease-linear duration-75 hover:border-teal-500 hover:border-solid hover:bg-white hover:text-teal-500 hover:text-[20px]"
+          >All Blogs</a
+        >
+      </li>
+
+      <li class="my-6 md:my-3 hidden md:block">
+        <a
+          href="/register"
+          class="bg-teal-500 text-white py-3 px-5 text-[18px] xl:text-[20px] 2xl:text-[25px] 3xl:text-[30px] 4xl:text-[35px] my-auto rounded-lg hover:border-2 ease-linear duration-75 hover:border-teal-500 hover:border-solid hover:bg-white hover:text-teal-500 hover:text-[20px]"
+          >Signup</a
+        >
+      </li>
+      <li class="my-6 md:my-3 hidden md:block">
+        <a
+          href="/login"
+          class="bg-teal-500 text-white py-3 px-5 text-[18px] xl:text-[20px] 2xl:text-[25px] 3xl:text-[30px] 4xl:text-[35px] my-auto rounded-lg hover:border-2 ease-linear duration-75 hover:border-teal-500 hover:border-solid hover:bg-white hover:text-teal-500 hover:text-[20px]"
+          >Login</a
+        >
+      </li>
+ 
+
+      {% endif %}
+    </div>
+
+    <!-- HAMBURGER -->
+
+    <li class="flex items-center md:hidden block">
+      <i
+        class="fa-solid fa-bars cursor-pointer text-2xl"
+        onclick="ToggleHandle()"
+      ></i>
+    </li>
+  </ul>
+  <!-- XMARK  -->
+<div id="burger" class="fixed inset-0 bg-white md:hidden block">
+  <div  class=" w-[100%] bg-slate-100 px-8 flex justify-between ">
+    
+      <li class="my-6 list-none">
+        <a
+          class="text-[25px] font-semibold font-sans text-teal-500"
+          href="/"
+        >
+          Blog
+        </a>
+      </li>
+  
+        <i
+          class="fa-solid fa-xmark cursor-pointer text-3xl py-7"
+          onclick="ToggleHandle()"
+        ></i>
+    
+  </div>
+  <div class="flex flex-col mt-[20px]">
+    {% if user.is_authenticated %}
+
+    <a href="" class="pb-5 flex justify-center my-3 border-b-2 w-full">
+      <img src="{% static 'images/p-icon.webp' %}" class="h-[40px]" alt="" />
+    </a>
+ 
+      <a
+        href=""
+        class="pb-5 flex justify-center my-3 text-[18px] border-b-2 w-full text-teal-600"
+        >{{user.username}}</a
+      >
+
+      <a
+        href="/allblogs"
+        class="pb-5 flex justify-center my-3 text-[18px] border-b-2 w-full"
+        >All Blogs</a
+      >
+
+      <a
+        href="/addblogs"
+        class="pb-5 flex justify-center my-3 text-[18px] border-b-2 w-full"
+        >Add Blogs</a
+      >
+
+      <a
+        href="/logout"
+        class="pb-5 flex justify-center my-3 text-[18px] border-b-2 w-full"
+        >Logout</a
+      >
+
+  
+
+
+    {% else %}
+
+      <a
+        href="/allblogs"
+        class="pb-5 flex justify-center my-3 text-[18px] border-b-2 w-full"
+        >All Blogs</a
+      >
+
+
+      <a
+        href="/register"
+        class="pb-5 flex justify-center my-3 text-[18px] border-b-2 w-full"
+        >Signup</a
+      >
+
+      <a
+        href="/login"
+        class="pb-5 flex justify-center my-3 text-[18px] border-b-2 w-full"
+        >Login</a
+      >
+
+
+    {% endif %}
+
+  </div>
+</div>
+</nav>
+
+<script>
+  // const logo=document.getElementById('logo')
+  // const blogLogo=()=>{
+  //   logo.innerHTML='shanta'
+  // }
+  
+  const burgernav = document.getElementById("burger");
+  const ToggleHandle = () => {
+    burgernav.classList.toggle("hidden");
+  };
+ 
+</script>
+{% endblock %}
